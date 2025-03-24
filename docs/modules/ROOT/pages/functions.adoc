@@ -1,0 +1,43 @@
+[[functions]]
+= Funkciók
+
+[[generateDocumentFromRequestData]]
+== Dokumentumgenerálás kérésben kapott adatok alapján
+
+A dokumentum generálása egy végponton keresztül kapott adatok (template, paraméterek, generáló- és template motor) alapján történik. A bemenet érkezhet kétféle módon:
+
+* Base64binary-ként: a kérésben elkódolva kerül küldésre a modul felé a teljes template, a paraméterek pedig kulcs-érték páronként érkezhetnek vagy JSON struktúrában base64binary formátumban.
+* Stream-ként: a requestet multipart formában fogadjuk, amely lehetővé teszi a különálló fájl- és paraméterkezelést.
+
+[[generateDocumentWithSignatureFromRequestData]]
+== Dokumentumgenerálás kérésben kapott adatok alapján aláírással
+
+Az aláíró funkció egy külön végponton érhető el, amely multipart formátumban fogadja a fájlokat. Az aláírás a requestben megadott profilnév alapján, a konfigurációban meghatározott paraméterek szerint történik. A folyamat szinkron módon zajlik, az aláírt fájl pedig a válasz részeként kerül visszaadásra.
+
+[[generateDocumentWithMetadataResponseFromRequestData]]
+== Dokumentumgenerálás kérésben kapott adatok alapján, metadata válasszal
+
+Az előzőhez hasonló módon a kapott kérés alapján a dokumentum legenerálása és letárolása, majd a generált dokumentumhoz tartozó metaadat objektum visszaadása történik a válaszban, a generált dokumentum nem kerül visszaadásra. Ebben az esetben is lehetőség van base64binary-ként vagy stream-ként beküldeni a template-t.
+
+[[generateDocumentFromStoredTemplate]]
+== Dokumentumgenerálás tárolt sablon alapján 
+
+Dokumentum generálása a modul adatbázisában, a TEMPLATE táblában tárolt fejelem és a hozzá tartozó template részek segítségével a kérésben kapott template névre hivatkozva, a kapott paraméterekkel és beállításokkal.
+
+* ha változik egy sablon tartalma futás közben, akkor a projektnek meg kell hívnia az evict végpontot, hogy frissüljön a cacheben.
+* ha új sablon kerül felvételre más érvényességgel, akkor nem fog kelleni az evict. működnie kell múltbeli, aktuális és jövőbeli érvényességű sablonnal is a generálásnak
+
+[[generateDocumentFromStoredTemplateWithMetadataResponse]]
+== Dokumentumgenerálás tárolt sablon alapján, metadata válasszal
+
+Az előző funkcióhoz hasonlóan dokumentumgenerálás történik tárolt sablon alapján, azonban a válaszban a dokumentumhoz tartozó metaadat objektum visszaadása történik a válaszban, a generált dokumentum nem kerül visszaadásra.
+
+[[getDocument]]
+== Dokumentum lekérdezése
+
+Azonosító alapján egyesével letölthetők a modul adatbázisában tárolt generált dokumentum. A kérés válaszában visszaadásra kerül a dokumentum octet-stream formátumban, illetve a fájl neve.
+
+[[getData]]
+== Adatok lekérdezése
+
+A generált dokumentumok metaadatai lekérdezhetők tömegesen egy szűrhető és rendezhető listában.

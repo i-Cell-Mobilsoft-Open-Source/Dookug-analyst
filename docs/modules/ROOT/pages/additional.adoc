@@ -1,0 +1,34 @@
+= Kiegészítő információk [[additional]]
+
+:table-caption!: 
+[[digitalSign]]
+== Digitális aláírás
+
+Digitális aláírás esetén lehet szó certify vagy sign műveletről.
+
+Ha például egy PDF dokumentumban egy szervezet vagy hivatal certify aláírást alkalmaz, az biztosítja, hogy az adott dokumentum hivatalos és nem módosítható lényegesen. Ha csak sign aláírás történik, akkor mások is aláírhatják később, és a dokumentum továbbra is változhat bizonyos korlátozások mellett.
+
+[cols="1h,1,1"]
+|=== 
+|Tulajdonság |Certify |Sign
+
+|Aláírás erőssége
+|Erősebb, hitelesítésre szolgál
+|Normál aláírás
+
+|Több aláíró
+|Általában csak egy
+|Több aláíró is lehet
+
+|Dokumentum védelme
+|Korlátozhatja a módosításokat
+|Általában nem akadályozza meg a további aláírásokat
+
+|Használati cél
+|Hivatalos hitelesítés
+|Általános digitális aláírás
+|=== 
+
+== PDF aláírás
+
+A tanúsítvány (PFX fájl) volume-ként van csatolva a konténerhez, így az új tanúsítvány bevezetése során elegendő azt egy új volume-ként csatolni, majd a konfigurációban frissíteni a szükséges beállításokat (keystore elérési útja, jelszava, illetve az alias, ha változott). Mivel a módosítás kizárólag konfigurációs szinten történik, nincs szükség új release kiadásra, a frissítést a DevOps önállóan el tudja végezni.

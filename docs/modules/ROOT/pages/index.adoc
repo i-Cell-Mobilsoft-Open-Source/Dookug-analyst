@@ -1,0 +1,20 @@
+
+:toc: left
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
+:figure-caption!:
+:figure-caption!:
+:imagesdir: ../images
+
+[.text-justify]
+
+= DookuG funkciók
+
+include::summary.adoc[leveloffset=+1]
+
+include::functions.adoc[leveloffset=+1]
+
+include::additional.adoc[leveloffset=+1]
+
+include::release-notes.adoc[leveloffset=+1]

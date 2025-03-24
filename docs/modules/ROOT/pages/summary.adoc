@@ -1,0 +1,21 @@
+ifndef::imagesdir[:imagesdir: ../images]
+
+[[overview]]
+= Áttekintés
+
+A DookuG modul egy dokumentumgeneráló modul, amely template-ek és paraméterek alapján PDF vagy szöveges dokumentumokat készít.
+
+Funkciói:
+
+* Dokumentum generálása kapott vagy modulban tárolt template alapján
+* Generált dokumentumok és metaadataik tárolása, visszaadása		
+* Generált dokumentum metaadatainak lekérdezése
+
+
+:DookuG: DookuG.png
+image::{DookuG}[title="DookuG felépítése és funkciói",link="{imagesdir}/{DookuG}",window=_blank]
+
+Az adatmodell, OpenAPI, és a konfigurációs lehetőségek a DB és JAVA dokumentációkban találhatók:
+
+* https://i-cell-mobilsoft-open-source.github.io/DookuG-backend/[JAVA dokumentáció^]
+* https://i-cell-mobilsoft-open-source.github.io/DookuG-DB/[DB dokumentáció^]
