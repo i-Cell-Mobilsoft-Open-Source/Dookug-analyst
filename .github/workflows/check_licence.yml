@@ -1,4 +1,4 @@
-name: Docker compile
+name: Check licence
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - 'dependabot/**'
 
 jobs:
-  docker-release:
+  check-licence:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout ${{ github.event.ref }}
