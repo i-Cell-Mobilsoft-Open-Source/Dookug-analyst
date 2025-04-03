@@ -1,0 +1,13 @@
+repos:
+- repo: https://github.com/Holzhaus/sourceheaders
+  rev: v0.0.4
+  hooks:
+  - id: sourceheaders
+    name: Add license headers
+    types_or:
+    - sql
+    - xml
+    - yaml
+    - shell
+    - dtd
+    files: '^(docs)/.*'
