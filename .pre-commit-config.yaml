@@ -10,4 +10,4 @@ repos:
     - yaml
     - shell
     - dtd
-    files: '^(etc|liquibase)/.*'
+    files: '^(docs)/.*'
