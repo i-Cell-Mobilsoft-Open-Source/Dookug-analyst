@@ -27,8 +27,4 @@ Ha például egy PDF dokumentumban egy szervezet vagy hivatal certify aláírás
 |Használati cél
 |Hivatalos hitelesítés
 |Általános digitális aláírás
-|=== 
-
-== PDF aláírás
-
-A tanúsítvány (PFX fájl) volume-ként van csatolva a konténerhez, így az új tanúsítvány bevezetése során elegendő azt egy új volume-ként csatolni, majd a konfigurációban frissíteni a szükséges beállításokat (keystore elérési útja, jelszava, illetve az alias, ha változott). Mivel a módosítás kizárólag konfigurációs szinten történik, nincs szükség új release kiadásra, a frissítést a DevOps önállóan el tudja végezni.
+|===

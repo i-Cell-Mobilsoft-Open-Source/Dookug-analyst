@@ -8,7 +8,8 @@ A DookuG modul egy dokumentumgeneráló modul, amely template-ek és paramétere
 Funkciói:
 
 * Dokumentum generálása kapott vagy modulban tárolt template alapján
-* Generált dokumentumok és metaadataik tárolása, visszaadása		
+* Létező dokumentum elektronikus aláírása
+* Generált dokumentumok letöltése
 * Generált dokumentum metaadatainak lekérdezése
 
 

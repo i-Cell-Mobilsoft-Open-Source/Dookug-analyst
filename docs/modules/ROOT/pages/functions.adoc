@@ -1,36 +1,49 @@
 [[functions]]
 = Funkciók
 
-[[generateDocumentFromRequestData]]
-== Dokumentumgenerálás kérésben kapott adatok alapján
+[[generateDocument]]
+== Dokumentumgenerálás
 
-A dokumentum generálása egy végponton keresztül kapott adatok (template, paraméterek, generáló- és template motor) alapján történik. A bemenet érkezhet kétféle módon:
+A modul többféle módon képes dokumentumokat előállítani, különböző bemeneti formátumok és sablonforrások alapján. A generálás során lehetőség van nemcsak a dokumentum, hanem a hozzá tartozó metaadatok visszaadására is. A generálás történhet dinamikusan kapott sablonból vagy a rendszerben korábban tárolt sablon alapján.
 
-* Base64binary-ként: a kérésben elkódolva kerül küldésre a modul felé a teljes template, a paraméterek pedig kulcs-érték páronként érkezhetnek vagy JSON struktúrában base64binary formátumban.
-* Stream-ként: a requestet multipart formában fogadjuk, amely lehetővé teszi a különálló fájl- és paraméterkezelést.
+=== Bemeneti formátumok
+
+A dokumentumgenerálási kérések kétféle bemeneti formátumban érkezhetnek:
+
+* Base64binary formátum:
+A sablon base64-ben kódolt fájlként érkezik a kérésben, míg a paraméterek kulcs-érték párok vagy JSON struktúrában, szintén base64-ben kódolva.
+
+* Stream (multipart/form-data):
+A kérés multipart formában kerül beküldésre, amely lehetővé teszi a sablonfájl(ok) és paraméterek külön kezelését.
+
+=== Sablonforrások
+
+Kérésben kapott sablon alapján:
+
+A sablon közvetlenül a kérés részeként kerül elküldésre (base64binary vagy stream formában). A generálás a kapott sablon és paraméterek alapján történik.
+
+Tárolt sablon alapján:
+
+A sablon a modul adatbázisában szereplő, a TEMPLATE táblában rögzített elemek alapján kerül kiválasztásra. A kérésben szerepel a hivatkozott sablon neve, a szükséges paraméterek és opcionális beállítások.
+
+* Ha a sablon tartalma futás közben változik, az evict végpont meghívása szükséges a cache frissítése érdekében.
+
+* Új sablon rögzítése esetén nem szükséges az evict, a rendszer támogatja a különböző érvényességű sablonokat (múltbeli, aktuális, jövőbeli).
+
+=== Válaszformátumok
+
+Dokumentum visszaadásával:
+
+* A válasz tartalmazza a legenerált dokumentumot.
+
+Metaadat objektummal:
+
+* A generált dokumentum nem kerül visszaadásra, csak a hozzá tartozó metaadat objektum. Ez a lehetőség elérhető mind kérésben kapott, mind tárolt sablon esetén.
 
 [[generateDocumentWithSignatureFromRequestData]]
 == Dokumentumgenerálás kérésben kapott adatok alapján aláírással
 
 Az aláíró funkció egy külön végponton érhető el, amely multipart formátumban fogadja a fájlokat. Az aláírás a requestben megadott profilnév alapján, a konfigurációban meghatározott paraméterek szerint történik. A folyamat szinkron módon zajlik, az aláírt fájl pedig a válasz részeként kerül visszaadásra.
-
-[[generateDocumentWithMetadataResponseFromRequestData]]
-== Dokumentumgenerálás kérésben kapott adatok alapján, metadata válasszal
-
-Az előzőhez hasonló módon a kapott kérés alapján a dokumentum legenerálása és letárolása, majd a generált dokumentumhoz tartozó metaadat objektum visszaadása történik a válaszban, a generált dokumentum nem kerül visszaadásra. Ebben az esetben is lehetőség van base64binary-ként vagy stream-ként beküldeni a template-t.
-
-[[generateDocumentFromStoredTemplate]]
-== Dokumentumgenerálás tárolt sablon alapján 
-
-Dokumentum generálása a modul adatbázisában, a TEMPLATE táblában tárolt fejelem és a hozzá tartozó template részek segítségével a kérésben kapott template névre hivatkozva, a kapott paraméterekkel és beállításokkal.
-
-* ha változik egy sablon tartalma futás közben, akkor a projektnek meg kell hívnia az evict végpontot, hogy frissüljön a cacheben.
-* ha új sablon kerül felvételre más érvényességgel, akkor nem fog kelleni az evict. működnie kell múltbeli, aktuális és jövőbeli érvényességű sablonnal is a generálásnak
-
-[[generateDocumentFromStoredTemplateWithMetadataResponse]]
-== Dokumentumgenerálás tárolt sablon alapján, metadata válasszal
-
-Az előző funkcióhoz hasonlóan dokumentumgenerálás történik tárolt sablon alapján, azonban a válaszban a dokumentumhoz tartozó metaadat objektum visszaadása történik a válaszban, a generált dokumentum nem kerül visszaadásra.
 
 [[getDocument]]
 == Dokumentum lekérdezése
