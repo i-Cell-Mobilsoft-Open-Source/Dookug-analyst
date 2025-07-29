@@ -1,5 +1,0 @@
-= Release notes
-
-[[releaseV110]]
-== v1.1.0
-A dokumentáció első verziója.

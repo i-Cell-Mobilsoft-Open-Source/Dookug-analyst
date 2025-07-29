@@ -1,2 +1,4 @@
-* xref:index.adoc[leveloffset=+1]
-
+* xref:general/index.adoc[]
+* xref:functions/functions.adoc[]
+* xref:release-notes/release-notes.adoc[]
+* xref:additional/additional.adoc[]

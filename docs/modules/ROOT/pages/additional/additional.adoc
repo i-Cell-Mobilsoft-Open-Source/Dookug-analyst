@@ -1,0 +1,135 @@
+[[additionalData]]
+= Additional data
+
+:table-caption!: 
+[[electronicSignature]]
+== Electronic signature
+
+In the case of digital signatures, the operation can be either certify or sign.
+
+For example, if a certify signature is applied to a PDF document by an organization or authority, it ensures that the document is official and cannot be significantly modified. If only a sign signature is used, others may sign the document later, and it can still be modified to some extent, within certain restrictions.
+
+[options="header,autowidth",cols="^h,^,^"]
+|=== 
+|Properties |Certify |Sign
+
+|Signature strength
+|Stronger, used for authentication
+|Normal signature
+
+|Multiple signers
+|Usually only one
+|Multiple signers possible
+
+|Document protection
+|May restrict modifications
+|Generally does not prevent further signatures
+
+|Purpose of use
+|Official authentication
+|General digital signing
+|===
+
+[[uploadingTemplatesToTheDatabase]]
+== Uploading templates to the database
+
+Templates stored in the DookuG database support handling large content, validity periods, multilingual templates, and interrelated template structures.
+
+*TEMPLATE*: This is the main table that stores the basic metadata of each template (e.g., name, validity period, language, etc.). If a template needs to be stored in multiple languages, then one record per language is required. This applies to both HTML and XSLT templates, regardless of whether the XSLT itself includes multiple languages. This is how DookuG determines in how many languages a given template is available.
+
+*TEMPLATE_PART*: If a template is composed of multiple parts, this table helps distinguish between them, such as header, footer, body, etc. If the template consists of only one part, only one record is required in this table, regardless of language or template format.
+
+*TEMPLATE_TEMPLATE_PART*: This is a linking table between the above two tables. There will be one record for each unique combination of language and template part.
+
+*TEMPLATE_PART_CONTENT*: This table has a one-to-one relationship with TEMPLATE_PART and stores the actual template content as a BLOB, for performance reasons. It facilitates handling larger content and helps template caching.
+In the case of an HTML template, you must store one record for each language variant of each template part. For an XSLT template consisting of a single part, only one record is sufficient, as the structure itself may contain the multilingual content.
+
+https://docs.k8s.icellmobilsoft.hu/dookug-module/DookuG-DB/main/summary.html[For detailed information about the database, see the database documentation.]
+
+*Example scenarios for sample templates with various properties:*
+
+.XSLT template - 3 languages, 1 template part
+[%collapsible]
+====
+Template properties:
+
+* The XSLT template is available in 3 languages: English, Hungarian, and German
+* Consists of 1 main part
+
+[options="header,autowidth",cols=",^,"]
+|=== 
+^|Table                 |Records  ^|Explanation
+
+|TEMPLATE               |3         |3 records corresponding to the 3 languages.
+|TEMPLATE_PART          |1         |Because there is one main part, regardless of language in the case of XSLT.
+|TEMPLATE_TEMPLATE_PART |3         |Linking table: The template type must be linked to the records for all three languages.
+|TEMPLATE_PART_CONTENT  |1         |Because the XSLT template structure includes the language variations, one record for the main template part will be stored here for all 3 languages.
+|===
+====
+
+.XSLT template - 2 languages, 2 template parts
+[%collapsible]
+====
+Template properties:
+
+* The XSLT template is available in 2 languages: English and Hungarian
+* Consists of 2 parts (header and body)
+
+[options="header,autowidth",cols=",^,"]
+|=== 
+^|Table                 |Records  ^|Explanation
+
+|TEMPLATE               |2         |One for the English version and one for the Hungarian version — corresponding to the languages.
+|TEMPLATE_PART          |2         |For header and body — corresponding to the types, regardless of language in the case of XSLT.
+|TEMPLATE_TEMPLATE_PART |4         |Linking table: The single Hungarian TEMPLATE record is linked to the 2 TEMPLATE_PART records, and the same is done for the English version.
+|TEMPLATE_PART_CONTENT  |2         |Because the XSLT template structure includes the language variations, one record per template part (header and body) will be stored here for both languages.
+|===
+====
+
+.HTML template - 3 languages, 1 template part
+[%collapsible]
+====
+Template properties:
+
+* The HTML template is available in 3 languages: English, Hungarian, and German
+* Consists of 1 main part
+
+[options="header,autowidth",cols=",^,"]
+|=== 
+^|Table                 |Records  ^|Explanation
+
+|TEMPLATE               |3         |3 records corresponding to the 3 languages.
+|TEMPLATE_PART          |3         |Because there is one main part per language.
+|TEMPLATE_TEMPLATE_PART |3         |Linking table: The template type must be linked to the records for all three languages.
+|TEMPLATE_PART_CONTENT  |3         |3 records for all three languages.
+|===
+====
+
+.HTML template - 2 languages, 2 template parts
+[%collapsible]
+====
+Template properties:
+
+* The HTML template is available in 2 languages: English and Hungarian
+* Consists of 2 parts (header and body)
+
+[options="header,autowidth",cols=",^,"]
+|=== 
+^|Table                 |Records  ^|Explanation
+
+|TEMPLATE               |2         |One for the English version and one for the Hungarian version — corresponding to the languages.
+|TEMPLATE_PART          |4         |2 for the headers and 2 for the bodies — corresponding to the types per language.
+|TEMPLATE_TEMPLATE_PART |4         |Linking table: The single Hungarian TEMPLATE record is linked to the 2 TEMPLATE_PART records, and the same is done for the English version.
+|TEMPLATE_PART_CONTENT  |4         |The header and body in Hungarian, and the header and body in English
+
+|===
+====
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+ifndef::imagesdir[:imagesdir: ../images]
+[.text-justify]
+
+= Overview
+
+The DookuG module is a document generation module that creates PDF or plain text documents based on a given template.
+
+Features:
+
+* Document generation in PDF or string format
+    ** based on HTML, XSLT, or plain string templates
+    ** with variable substitution
+    ** with optional electronic signature
+* Electronic signing of existing documents
+* Downloading generated documents
+* Retrieving metadata of generated documents
+
+:DookuG: DookuG.png
+image::{DookuG}[title="Architecture and Features of DookuG",link="{imagesdir}/{DookuG}",window=_blank]
