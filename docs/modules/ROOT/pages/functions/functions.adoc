@@ -77,7 +77,7 @@ A https://docs.k8s.icellmobilsoft.hu/dookug-module/dookug-backend/master-wf34/ad
 
 The template source can be a template *stored in the module's database* (in the TEMPLATE* tables). To identify the template, the request must include the referenced template's name, language, and validity date. The system manages templates with different validity periods (past, current, future).
 
-xref:additional.adoc#uploadingTemplatesToTheDatabase[The guide for uploading templates to the database can be found here.] If the template content changes during runtime, the /evict endpoint must be called to refresh the cache. This is not necessary when inserting a new template. 
+xref:../additional/additional.adoc#uploadingTemplatesToTheDatabase[The guide for uploading templates to the database can be found here.] If the template content changes during runtime, the /evict endpoint must be called to refresh the cache. This is not necessary when inserting a new template. 
 
 The template source can also be *sent within the request* in one of the following two formats:
 
@@ -94,7 +94,7 @@ When generating PDF documents, optional electronic signing is also available. Th
 
 In the document generation request, only the name of the signing profile needs to be specified. The other data will appear among the PDF signature details and should be obtained from the end customer.
 
-xref:additional.adoc#electronicSignature[More information about the types of signatures can be found here.]
+xref:../additional/additional.adoc#electronicSignature[More information about the types of signatures can be found here.]
 
 [[storage]]
 === Storage

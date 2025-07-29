@@ -1,0 +1,16 @@
+﻿:toc: left
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
+:source-highlighter: rouge
+:rouge-style: thankful_eyes
+:icons: font
+:table-stripes: even
+ifndef::imagesdir[:imagesdir: ./images]
+
+= DookuG functions
+
+include::pages/general/index.adoc[leveloffset=+1]
+include::pages/functions/functions.adoc[leveloffset=+1]
+include::pages/additional/additional.adoc[leveloffset=+1]
+include::pages/release-notes/release-notes.adoc[leveloffset=+1]

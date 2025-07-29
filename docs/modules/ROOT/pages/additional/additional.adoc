@@ -46,7 +46,8 @@ In the case of an HTML template, you must store one record for each language var
 
 https://docs.k8s.icellmobilsoft.hu/dookug-module/DookuG-DB/main/summary.html[For detailed information about the database, see the database documentation.]
 
-*Example scenarios for sample templates with various properties:*
+=== Example scenarios
+Example scenarios for sample templates with various properties:
 
 .XSLT template - 3 languages, 1 template part
 [%collapsible]
