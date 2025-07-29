@@ -1,6 +1,6 @@
 site:
   title: DookuG User Manual
-  start_page: Dookug-analyst::general/index.adoc
+  start_page: dkg-analyst::general/index.adoc
 
 content:
   sources:
