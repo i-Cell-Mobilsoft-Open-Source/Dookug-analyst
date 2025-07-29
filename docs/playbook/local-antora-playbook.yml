@@ -1,0 +1,18 @@
+site:
+  title: Config - Analyst
+  start_page: cfg-analyst::general/index.adoc
+content:
+  sources:
+    - url: ./../..
+      branches: HEAD
+      start_path: docs
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+runtime:
+  # ezzel tudjuk kikenyszeriteni, hogy ne cache-bol dolgozzon, hanem mindig menjen el a friss adatert
+  fetch: true
+asciidoc:
+  attributes:
+    page-toclevels: 3

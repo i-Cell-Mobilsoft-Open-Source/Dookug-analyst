@@ -1,0 +1,119 @@
+:figure-caption!:
+
+[[functions]]
+= Functions
+
+[[generateDocument]]
+== Document generation
+
+The module is capable of generating documents in multiple ways.
+
+Document generation consists of three steps. The table below shows which functions are available in each case:
+
+++++
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
+<table style="
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  font-family: sans-serif;
+">
+  <tr>
+    <th rowspan="2">Phase</th>
+    <th rowspan="2">Function</th>
+    <th colspan="3">Generator engine</th>
+  </tr>
+  <tr>
+    <th>SAXON</th>
+    <th>PDF_BOX</th>
+    <th>NONE</th>
+  </tr>
+  <tr>
+    <td rowspan="2">1) Compilation</td>
+    <td style="text-align: left;">Can use template engine (Handlebars)</td>
+    <td>x</td><td>x</td><td>x</td>
+  </tr>
+  <tr>
+    <td style="text-align: left;">Supported template format</td>
+    <td>XSLT</td><td>HTML</td><td>STRING</td>
+  </tr>
+  <tr>
+    <td rowspan="3">2) Generation</td>
+    <td style="text-align: left;">Supported template source</td>
+    <td>DB, request</td><td>DB, request</td><td>DB, request</td>
+  </tr>
+  <tr>
+    <td style="text-align: left;">Generated document format</td>
+    <td>PDF</td><td>PDF</td><td>STRING</td>
+  </tr>
+  <tr>
+    <td style="text-align: left;">Digitally signing PDF</td>
+    <td>x</td><td>x</td><td>-</td>
+  </tr>
+  <tr>
+    <td>3) Storage</td>
+    <td style="text-align: left;">Storing in database (not recommended)</td>
+    <td>x</td><td>x</td><td>x</td>
+  </tr>
+</table>
+++++
+
+=== Compilation
+
+Handlebars is a templating engine used to generate documents by combining templates with data. It allows you to create dynamic content by embedding placeholders (called expressions) and handling template parameters within your templates, which get replaced with actual data when rendered. It also supports working with multiple and nested templates, making it easy to build complex views by composing smaller template parts. This clear separation of markup from logic improves maintainability and readability.
+
+DookuG accepts parameters values in either key-value pairs or base64-encoded JSON format on the /generate endpoints.
+
+A https://docs.k8s.icellmobilsoft.hu/dookug-module/dookug-backend/master-wf34/additional/index.html#_helpers_helper_functions_for_use_in_template_files[description of the available expressions] can be found here.
+
+=== Generation
+
+==== Template source
+
+The template source can be a template *stored in the module's database* (in the TEMPLATE* tables). To identify the template, the request must include the referenced template's name, language, and validity date. The system manages templates with different validity periods (past, current, future).
+
+xref:additional.adoc#uploadingTemplatesToTheDatabase[The guide for uploading templates to the database can be found here.] If the template content changes during runtime, the /evict endpoint must be called to refresh the cache. This is not necessary when inserting a new template. 
+
+The template source can also be *sent within the request* in one of the following two formats:
+
+* Base64binary: The template and parameters are sent as base64-encoded text in the request. Parameters can be provided as key-value pairs or in JSON format.
+* Stream (multipart/form-data): The template is sent as a file on the endpoint, while the parameters are sent as text, also either as key-value pairs or in JSON format.
+
+==== Electronic signature
+
+When generating PDF documents, optional electronic signing is also available. The following data must be configured in the module settings for this purpose:
+
+* Signature profile (1-64 characters): The calling system can configure multiple signing profiles within the module. This allows different PDFs to be signed with different signatures. The signing key can be either RSA or ECDSA, which must be uploaded to the keystore and its path must also be specified in the module configuration. The document will be signed using this private key.
+* Signature name (1-30 characters), optional.
+* Signature reason (1-128 characters), optional.
+
+In the document generation request, only the name of the signing profile needs to be specified. The other data will appear among the PDF signature details and should be obtained from the end customer.
+
+xref:additional.adoc#electronicSignature[More information about the types of signatures can be found here.]
+
+[[storage]]
+=== Storage
+
+Storing the generated document in the module’s database is a legacy feature and its use is not recommended. The calling system should forward the generated document received from DookuG to the DocStore module, which is designed for document storage and management. Therefore, endpoints that return only metadata should be avoided.
+
+== Signing an existing PDF
+
+The signing function is also available on a separate endpoint for signing an existing PDF. It accepts the document to be signed in multipart format. The signing is performed based on the profile name specified in the request, according to the parameters defined in the configuration.
+The process runs synchronously, and the signed file is returned as part of the response.
+
+== Document download
+
+Generated documents saved in the module database can be downloaded individually by their identifier. The response to the request returns the document in octet-stream format, as well as the file name. 
+
+Storing the generated document is not recommended with the DookuG module. See: <<storage>>
+
+== Query data
+
+The metadata of generated documents can be queried in bulk in a filterable and sortable list, if they have been stored in the module database. The metadata includes: the file name, format, and status (DONE/FAILED). 
+
+Storing the generated document is not recommended with the DookuG module. See: <<storage>>

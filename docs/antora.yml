@@ -1,0 +1,6 @@
+name: dkg-analyst
+title: DookuG User Manual
+version: true
+start_page: index.adoc
+nav:
+  - modules/ROOT/nav.adoc
