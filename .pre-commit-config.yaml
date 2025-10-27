@@ -4,7 +4,7 @@ repos:
   hooks:
   - id: sourceheaders
     name: Add license headers
-#    types_or:
-#    - yaml
-#    - shell
-    files: ^docs\/.*\.(ya?ml|sh)$
+    types_or:
+    - yaml
+    - shell
+#    files: '^docs\/.*\.(adoc|ya?ml|sh)$'
