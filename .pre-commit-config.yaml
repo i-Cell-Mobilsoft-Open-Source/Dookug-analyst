@@ -7,4 +7,4 @@ repos:
     types_or:
     - yaml
     - shell
-    files: '^(docs)/.*\.adoc$'
+    files: '^(docs)\/.*\.adoc$'
