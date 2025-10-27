@@ -13,7 +13,7 @@ license = "Apache-2.0"
 #spdx_license_identifier = "MIT"
 include_spdx_license_identifier = "auto"
 
-[language.adoc]
+[language.asciidoc]
 extensions = [".adoc"]
 block_comment = { start = "////\n", end = "\n////" }
 inline_comment = "// "
