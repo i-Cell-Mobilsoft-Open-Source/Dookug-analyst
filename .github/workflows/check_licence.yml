@@ -5,6 +5,14 @@ on:
     branches-ignore:
       - 'gh-pages'
       - 'dependabot/**'
+  workflow_dispatch:
+    inputs:
+      comment:
+        description: 'test check licence'
+        # Default value if no value is explicitly provided
+        default: 'test check licence'
+        # Input has to be provided for the workflow to run
+        required: true
 
 jobs:
   check-licence:
