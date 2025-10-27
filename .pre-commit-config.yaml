@@ -7,5 +7,5 @@ repos:
     types_or:
     - yaml
     - shell
-    - asciiidoc
+    - asciidoc
     files: '^docs/.*'
