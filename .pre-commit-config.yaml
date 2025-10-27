@@ -10,5 +10,5 @@ repos:
     - yaml
     - shell
     - dtd
-    - adoc
+    - asciidoc
     files: '^(docs)/.*'
