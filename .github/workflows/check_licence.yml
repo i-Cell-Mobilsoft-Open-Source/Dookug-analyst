@@ -55,7 +55,7 @@ jobs:
         run: pre-commit run sourceheaders --all-files --verbose || true
 
       - name: Commit added headers (push events only)
-        if: github.event_name == 'push'
+        if: github.event_name == 'pull_request'
         run: |
           if ! git diff --quiet; then
             git config user.name github-actions[bot]
