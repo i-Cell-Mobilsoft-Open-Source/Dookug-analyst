@@ -5,10 +5,7 @@ repos:
   - id: sourceheaders
     name: Add license headers
     types_or:
-    - sql
-    - xml
     - yaml
     - shell
-    - dtd
     - asciidoc
     files: '^(docs)/.*'
