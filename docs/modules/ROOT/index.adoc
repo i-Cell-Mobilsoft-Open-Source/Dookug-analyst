@@ -14,7 +14,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-﻿:toc: left
+:toc: left
 :toclevels: 4
 :sectnums:
 :sectnumlevels: 4
@@ -26,7 +26,7 @@ ifndef::imagesdir[:imagesdir: ./images]
 
 = DookuG functions
 
-include::pages/general/index.adoc[leveloffset=+1]
-include::pages/functions/functions.adoc[leveloffset=+1]
-include::pages/additional/additional.adoc[leveloffset=+1]
-include::pages/release-notes/release-notes.adoc[leveloffset=+1]
+include::general/index.adoc[leveloffset=+1]
+include::functions/functions.adoc[leveloffset=+1]
+include::additional/additional.adoc[leveloffset=+1]
+include::release-notes/release-notes.adoc[leveloffset=+1]
