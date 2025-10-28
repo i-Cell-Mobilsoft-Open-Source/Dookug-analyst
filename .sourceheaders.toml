@@ -17,7 +17,7 @@ include_spdx_license_identifier = "auto"
 extensions = [".adoc"]
 block_comment = { start = "////\n", end = "\n////" }
 inline_comment = "// "
-header_pattern = "^////\n(.|\n)*?\n////\n"
+header_pattern = "^////\n[\\s\\S]*?\n////\n?"
 
 [language.c]
 extensions = [".c", ".h", ".cc", ".cpp", ".cxx", ".hpp", ".hxx"]
