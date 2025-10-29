@@ -31,5 +31,5 @@ Now `pre-commit` will run automatically on `git commit`
 Optionally, you can run the hook manually with the following command executed from the root of the project: `pre-commit run --all-files`
 
 IMPORTANT: You will experience that on newly added files the license header will be added automatically on commit,
-but at the same time it will show failure. This is because the hook adds the license header, but the commit was made without it.
-Thus, you have to re-commit the changes. This is a one-time action per newly added file.
+but at the same time the commit will fail with error. This is because the hook adds the license header, but the commit was made without it.
+Thus, you have to re-commit the changes. This is a one-time action per newly added files.
