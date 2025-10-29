@@ -2,25 +2,33 @@
 
 == Generating license headers
 
-For generating license headers in newly added files https://pre-commit.com/[pre-commit] is used.
-You only have to set it up once, then the hooks will run automatically on every commit.
+For generating license headers in newly added asciidoc, shell and yaml files https://pre-commit.com/[pre-commit] should be used.
+It only has to be set up once, then the hook will run automatically on every commit.
 
 `.pre-commit-config.yaml` holds the configuration for the hooks.
 It defines the hook for adding license headers, the file types to check in a specific folder.
 
 `.sourceheaders.toml` holds the license header template, which will be added to the files, and the configuration for each file type.
 
-Follow these steps:
+=== Local setup
 
-. Install Python 3
-. Optionally create a virtual python environment and activate it
+Before setting up pre-commit, make sure that you have the following installed:
 
- python3 -m venv .venv
- . .venv/bin/activate
+* https://www.python.org/[python 3]
+* https://pypi.org/project/pip/[pip]
 
-. `pip install pre-commit`
-. `pre-commit install`
-. Optionally you can run the hook manually with: `pre-commit run --all-files`
+[source, bash]
+----
+# Install pre-commit
+pip install pre-commit
+
+# Set up the git hook scripts
+pre-commit install
+----
+
+Now `pre-commit` will run automatically on `git commit`
+
+Optionally, you can run the hook manually with the following command executed from the root of the project: `pre-commit run --all-files`
 
 IMPORTANT: You will experience that on newly added files the license header will be added automatically on commit,
 but at the same time it will show failure. This is because the hook adds the license header, but the commit was made without it.
