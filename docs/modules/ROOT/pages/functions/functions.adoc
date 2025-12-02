@@ -22,7 +22,7 @@
 [[generateDocument]]
 == Document generation
 
-The module is capable of generating documents in multiple ways.
+The module is capable of generating documents in multiple ways. After generation, the module can also return the generated documents in gzip-compressed format.
 
 Document generation consists of three steps. The table below shows which functions are available in each case:
 
@@ -124,7 +124,7 @@ The process runs synchronously, and the signed file is returned as part of the r
 
 == Document download
 
-Generated documents saved in the module database can be downloaded individually by their identifier. The response to the request returns the document in octet-stream format, as well as the file name. 
+Generated documents saved in the module database can be downloaded individually by their identifier. The response to the request returns the document in octet-stream format, as well as the file name. Upon request, the document can also be delivered in gzip-compressed format.
 
 Storing the generated document is not recommended with the DookuG module. See: <<storage>>
 
