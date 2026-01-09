@@ -30,6 +30,7 @@ Features:
 * Electronic signing of existing documents
 * Downloading generated documents
 * Retrieving metadata of generated documents
+* Web application for testing templates and uploading them into the database
 
 :DookuG: DookuG.png
 image::{DookuG}[title="Architecture and Features of DookuG",link="{imagesdir}/{DookuG}",window=_blank]

@@ -28,5 +28,6 @@ ifndef::imagesdir[:imagesdir: ./images]
 
 include::pages/general/index.adoc[leveloffset=+1]
 include::pages/functions/functions.adoc[leveloffset=+1]
+include::pages/functions/webapp.adoc[leveloffset=+1]
 include::pages/additional/additional.adoc[leveloffset=+1]
 include::pages/release-notes/release-notes.adoc[leveloffset=+1]

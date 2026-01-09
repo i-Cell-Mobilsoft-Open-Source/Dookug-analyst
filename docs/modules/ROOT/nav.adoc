@@ -16,5 +16,6 @@
 
 * xref:general/index.adoc[]
 * xref:functions/functions.adoc[]
+* xref:functions/webapp.adoc[]
 * xref:additional/additional.adoc[]
 * xref:release-notes/release-notes.adoc[]
